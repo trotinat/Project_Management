@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->boolean('status');
+            $table->timestamps();   
+            $table->unsignedBigInteger('projectmanager_id')->nullable();
+
+            // Define foreign key constraint
+            $table->foreign('projectmanager_id')
+            ->references('id')
+            ->on('project_managers')
+            ->onDelete('SET NULL');    
         });
     }
 

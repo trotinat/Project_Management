@@ -14,6 +14,13 @@ return new class extends Migration
         Schema::create('sprints', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('projects_id')->nullable();
+
+            // Define foreign key constraint
+            $table->foreign('projects_id')
+            ->references('id')
+            ->on('projects')
+            ->onDelete('SET NULL');    
         });
     }
 

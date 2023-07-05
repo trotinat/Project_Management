@@ -4,5 +4,10 @@ namespace App;
 
 class Developer extends User
 {
-    // Define the Developer model properties and methods
+    public function formations()
+    {
+        return $this->belongsToMany(Formation::class, 'Formation_Developer')
+                    ->withPivot('duration')
+                    ->withTimestamps();
+    }
 }
